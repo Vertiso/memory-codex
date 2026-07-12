@@ -37,6 +37,8 @@
       "Remember this decision for future Codex sessions.",
       "Find my recent handoffs for this repository."
     ],
-    "brandColor": "#B91C1C"
+    "brandColor": "#B91C1C",
+    "composerIcon": "./assets/logo.png",
+    "logo": "./assets/logo.png"
   }
 }
