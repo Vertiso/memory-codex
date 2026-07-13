@@ -1,7 +1,7 @@
 {
   "name": "vertiso-memory",
-  "version": "0.2.1",
-  "description": "Portable, user-owned memory for Codex and other AI agents through a remote OAuth MCP server.",
+  "version": "1.0.0",
+  "description": "Portable, user-owned memory for Codex and other AI agents through a remote OAuth MCP server. Available worldwide except where prohibited by applicable law or unsupported by our service providers.",
   "author": {
     "name": "Vertiso Corporation",
     "email": "support@vertiso.ai",
@@ -21,7 +21,7 @@
   "interface": {
     "displayName": "Vertiso Memory",
     "shortDescription": "Durable memory for Codex",
-    "longDescription": "Connect Codex to Vertiso Memory's remote OAuth MCP server so agents can recall durable facts, decisions, preferences, project context, and handoffs across sessions and tools.",
+    "longDescription": "Connect Codex to Vertiso Memory's remote OAuth MCP server so agents can recall durable facts, decisions, preferences, project context, and handoffs across sessions and tools. Available worldwide except where prohibited by applicable law or unsupported by our service providers.",
     "developerName": "Vertiso Corporation",
     "category": "Productivity",
     "capabilities": [
