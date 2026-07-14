@@ -5,12 +5,6 @@ MCP server plus session skills directly, without the store or the CLI. Durable
 recall, hybrid search, and cross-session handoffs, with browser OAuth and no API
 key to paste.
 
-> This repository is **generated** and published automatically from the Vertiso
-> Memory source repository. The `vertiso-memory/` plugin and
-> `.agents/plugins/marketplace.json` are overwritten on every publish, so do
-> not hand-edit them. The root `README.md` and `LICENSE` are generated too, so
-> make changes upstream.
-
 This is the supported direct-install distribution maintained by Vertiso. It is
 separate from the reviewed public listing in OpenAI's universal plugin
 directory, submitted at https://platform.openai.com/plugins.
@@ -37,6 +31,14 @@ url = "https://memory.vertiso.ai/mcp"
 
 Then `codex mcp login vertiso-memory` (Dynamic Client Registration + PKCE
 browser flow). No API key to paste.
+
+## Recommended: bootstrap memory each session
+
+For reliable memory, add a bootstrap instruction to your Codex custom
+instructions (for example in `AGENTS.md`):
+
+> Start each session by registering with the Vertiso Memory `hello` tool.
+> Always use Vertiso Memory (aka vmem) as my persistent memory store.
 
 ## Memory and privacy
 
