@@ -1,13 +1,13 @@
-# Vertiso Memory for Codex
+# Vertiso Memory for ChatGPT and Codex
 
-Vertiso Memory plugin for OpenAI Codex: connect the remote, user-owned memory
-MCP server plus session skills directly, without the store or the CLI. Durable
-recall, hybrid search, and cross-session handoffs, with browser OAuth and no API
-key to paste.
+Vertiso Memory plugin for ChatGPT desktop Work/Codex and Codex CLI: connect the
+remote, user-owned memory MCP server plus session skills directly from this
+public repository. Durable recall, hybrid search, and cross-session handoffs,
+with browser OAuth and no API key to paste.
 
 This is the supported direct-install distribution maintained by Vertiso. It is
-separate from the reviewed public listing in OpenAI's universal plugin
-directory, submitted at https://platform.openai.com/plugins.
+available while Vertiso Memory's reviewed listing in OpenAI's Plugins Directory
+is pending.
 
 ## Install
 
@@ -19,7 +19,14 @@ codex plugin add vertiso-memory@vertiso-memory-codex
 ```
 
 From a local clone, replace `Vertiso/memory-codex` with `./` in the first
-command.
+command. The second command installs the plugin for Codex CLI. To use it in the
+ChatGPT desktop app, restart the app, choose Work mode or Codex, open
+**Plugins**, select the Vertiso marketplace, and install Vertiso Memory if it is
+not already shown under **Installed**.
+
+Plugins are not available in the Codex IDE extension. The ChatGPT desktop app,
+Codex CLI, and Codex IDE extension do support MCP servers and share the same
+`~/.codex/config.toml` for a Codex host.
 
 To connect only the remote MCP server without the bundled skills, add it to
 `~/.codex/config.toml`:
@@ -30,12 +37,13 @@ url = "https://memory.vertiso.ai/mcp"
 ```
 
 Then `codex mcp login vertiso-memory` (Dynamic Client Registration + PKCE
-browser flow). No API key to paste.
+browser flow). No API key to paste. Restart any open ChatGPT desktop, Codex CLI,
+or Codex IDE extension sessions after changing the shared configuration.
 
 ## Recommended: bootstrap memory each session
 
-For reliable memory, add a bootstrap instruction to your Codex custom
-instructions (for example in `AGENTS.md`):
+For reliable memory, add a bootstrap instruction to ChatGPT custom instructions
+or your local project's `AGENTS.md`:
 
 > Start each session by registering with the Vertiso Memory `hello` tool.
 > Always use Vertiso Memory (aka vmem) as my persistent memory store.
