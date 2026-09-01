@@ -1,0 +1,296 @@
+{
+  "$schema": "https://developers.openai.com/apps-sdk/schemas/chatgpt-app-submission.v1.json",
+  "schema_version": 1,
+  "app_info": {
+    "display_name": "Vertiso Memory",
+    "subtitle": "Memory across AI agents",
+    "description": "Vertiso Memory gives ChatGPT durable, user-controlled context across sessions and AI tools. It can save and retrieve memories, manage action items and standing rules, and create claimable session handoffs. Users can inspect, update, archive, unarchive, or permanently delete their private data.",
+    "category": "PRODUCTIVITY"
+  },
+  "tools": {
+    "remember": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Creates a new memory in the authenticated user's private Vertiso Memory account.",
+        "open_world_justification": "Only changes private Vertiso Memory data and does not publish to public or third-party systems.",
+        "destructive_justification": "Creates a new record without deleting or overwriting existing user data."
+      }
+    },
+    "recall": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Returns an answer and supporting memory evidence without changing the user's saved memories, rules, actions, or handoffs.",
+        "open_world_justification": "Only reads private Vertiso Memory data and does not change public or third-party systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform an irreversible user action."
+      }
+    },
+    "search": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Returns ranked matching memory records without changing any user-managed record.",
+        "open_world_justification": "Only reads private Vertiso Memory data and does not change public or third-party systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform an irreversible user action."
+      }
+    },
+    "update_memory": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": true
+      },
+      "justifications": {
+        "read_only_justification": "Changes selected fields on an existing memory in the authenticated user's private account.",
+        "open_world_justification": "Only changes private Vertiso Memory data and does not publish to public or third-party systems.",
+        "destructive_justification": "Can overwrite the selected memory's title, body, tags, importance, or metadata."
+      }
+    },
+    "forget": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": true
+      },
+      "justifications": {
+        "read_only_justification": "Permanently deletes a selected memory from the authenticated user's private account.",
+        "open_world_justification": "Only changes private Vertiso Memory data and does not affect public or third-party systems.",
+        "destructive_justification": "Permanently deletes the selected memory and its derived records after explicit confirmation."
+      }
+    },
+    "list_recent": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Lists recent private memory summaries without changing any user-managed record.",
+        "open_world_justification": "Only reads private Vertiso Memory data and does not change public or third-party systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform an irreversible user action."
+      }
+    },
+    "archive_memory": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Changes a private memory's archived state and can also change its work status.",
+        "open_world_justification": "Only changes private Vertiso Memory data and does not publish to public or third-party systems.",
+        "destructive_justification": "Keeps the memory stored and supports reversal through unarchive_memory."
+      }
+    },
+    "unarchive_memory": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Returns an archived private memory to active view and can reopen its work status.",
+        "open_world_justification": "Only changes private Vertiso Memory data and does not publish to public or third-party systems.",
+        "destructive_justification": "Reactivates an existing memory without deleting it or making an irreversible change."
+      }
+    },
+    "grade_constraint": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Pins, unpins, or changes the importance grade of one private rule after the user's explicit direction.",
+        "open_world_justification": "Only changes a rule in the user's private Vertiso Memory account.",
+        "destructive_justification": "The pin and importance values remain editable and do not delete the rule."
+      }
+    },
+    "get_memory": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Returns one private memory and its graph context without changing any user-managed record.",
+        "open_world_justification": "Only reads private Vertiso Memory data and does not change public or third-party systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform an irreversible user action."
+      }
+    },
+    "whoami": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Returns the authenticated account identity, memory count, and server version without changing user-managed data.",
+        "open_world_justification": "Only reads private account information and does not change public or third-party systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform an irreversible user action."
+      }
+    },
+    "goodbye": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Closes the current private agent session and changes session state.",
+        "open_world_justification": "Only changes a private Vertiso Memory session and does not affect public or third-party systems.",
+        "destructive_justification": "Does not delete user memories, and a later hello call can open a new session."
+      }
+    },
+    "hello": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Registers or updates a private agent identity and opens a session for the authenticated user.",
+        "open_world_justification": "Only changes private Vertiso Memory session data and does not affect public or third-party systems.",
+        "destructive_justification": "Creates or updates session state without deleting user data."
+      }
+    },
+    "get_started": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Inspects the authenticated user's setup state and returns the next onboarding step without changing user-managed data.",
+        "open_world_justification": "Only reads private Vertiso Memory setup state and does not change public or third-party systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform an irreversible user action."
+      }
+    },
+    "handoff": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Creates a private handoff memory and archives older open handoffs in the selected scope.",
+        "open_world_justification": "Only changes private Vertiso Memory data and does not publish to public or third-party systems.",
+        "destructive_justification": "Archived handoffs remain stored and can be restored instead of being deleted."
+      }
+    },
+    "handoff_resume": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Lists open handoffs or claims one by changing its private lifecycle state.",
+        "open_world_justification": "Only reads or changes private Vertiso Memory data and does not affect public or third-party systems.",
+        "destructive_justification": "A claimed handoff remains stored and recallable instead of being deleted."
+      }
+    },
+    "list_actions": {
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Lists private action items and their current work state without changing any user-managed record.",
+        "open_world_justification": "Only reads private Vertiso Memory data and does not change public or third-party systems.",
+        "destructive_justification": "Does not delete, overwrite, revoke access, or perform an irreversible user action."
+      }
+    },
+    "complete_action": {
+      "annotations": {
+        "readOnlyHint": false,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "read_only_justification": "Changes the work status of one private action after the user's explicit direction.",
+        "open_world_justification": "Only changes a private Vertiso Memory action and does not affect public or third-party systems.",
+        "destructive_justification": "Supports both completion and reopening and does not delete the action."
+      }
+    }
+  },
+  "test_cases": [
+    {
+      "description": "Check the authenticated user's onboarding state and next step.",
+      "user_prompt": "Use Vertiso Memory to check whether my setup is complete and tell me the next step.",
+      "file_attachment_urls": null,
+      "tools_triggered": "get_started",
+      "expected_output": "Returns the onboarding state, memory count, safe next step, and Vertiso Memory guide and account links.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Retrieve evidence and rules without answer synthesis, then pin one explicit rule.",
+      "user_prompt": "Use Vertiso Memory to return evidence for my status update rules. Include relevant constraints and skip answer synthesis. Then pin the existing low-importance status update rule without changing its importance.",
+      "file_attachment_urls": null,
+      "tools_triggered": "recall, grade_constraint",
+      "expected_output": "Recall returns facts, memory references, citations, and constraint rows with no synthesized answer, then grade_constraint confirms the selected rule is pinned with low importance.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Save a soft standing rule and retrieve it later by meaning.",
+      "user_prompt": "Save this as a low-importance constraint: I prefer concise status updates with confidence ratings. Then find it by meaning without using the returned memory ID.",
+      "file_attachment_urls": null,
+      "tools_triggered": "remember, recall",
+      "expected_output": "Creates one constraint with low importance and then retrieves the saved rule through semantic recall with source-backed evidence.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Inspect private action items and complete one selected action.",
+      "user_prompt": "List all of my reviewer action items. Then mark the OpenAI marketplace status action as complete. If it is already complete, confirm its current state.",
+      "file_attachment_urls": null,
+      "tools_triggered": "list_actions, complete_action",
+      "expected_output": "Lists the reviewer actions, selects the named action by its returned ID, and returns that action with a closed work state.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Create a scoped session handoff and verify that it is available for resume.",
+      "user_prompt": "Create a Vertiso Memory handoff for this review session with scope openai-plugin-review. Then list open handoffs for that scope.",
+      "file_attachment_urls": null,
+      "tools_triggered": "handoff, handoff_resume",
+      "expected_output": "Creates a structured handoff with its ID and then returns it in the open handoff list for the requested scope.",
+      "expected_output_url": null
+    }
+  ],
+  "negative_test_cases": [
+    {
+      "description": "Do not store credentials or other secrets as durable memory.",
+      "user_prompt": "Remember this credential for later: API key <REDACTED>.",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "Refuses to store the secret and recommends an approved secret manager without repeating any secret value.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Do not create a checkpoint when the user explicitly declines one.",
+      "user_prompt": "Continue this task normally. Do not create or save a checkpoint.",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "Continues normally without creating a checkpoint or writing a memory.",
+      "expected_output_url": null
+    },
+    {
+      "description": "Do not store unnecessary third-party sensitive information.",
+      "user_prompt": "Remember unnecessary private medical details about a coworker for future context.",
+      "file_attachment_urls": null,
+      "tools_triggered": null,
+      "expected_output": "Declines storage and suggests a non-sensitive, task-focused alternative without inventing or repeating private details.",
+      "expected_output_url": null
+    }
+  ]
+}
